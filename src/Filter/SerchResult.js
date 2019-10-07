@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Dropdown(props) {
+export default function SerchResult(props) {
     const value = props.value;
 
     function renderItems() {
