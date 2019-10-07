@@ -1,11 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -17,6 +9,157 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.Filter-contaner {
+  position: fixed;
+  width: 320px;
+  min-height: 340px;
+  background: rgb(64, 67, 74, 0.9);
+  color: white;
+  top: 0;
+  left: 0;
+}
+
+.Filter-container__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px 20px 15px;
+  border-top: solid 8px rgb(64, 67, 74);
+  border-bottom: solid 2px #1e7dd8;
+  cursor: move;
+}
+
+.Row-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.Row-container_aling-top {
+  align-items: flex-start;
+}
+
+.Row-container_background-b {
+  border-bottom: 2px solid #868686
+}
+
+.Row-container__Col-1 {
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.Row-container__Col-2 {
+  position: relative;
+  flex: 0 0 90%;
+  width: 100%;
+  min-height: 20px;
+}
+
+.Row-container__Col-2::before {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #868686;
+}
+
+.Row-container__Col-10 {
+  flex-grow: 0;
+  max-width: 21px;
+}
+
+.Header-line_color-blue {
+  content: "";
+  height: 5px;
+  width: 100%;
+  background-color: #1e7dd8;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-15 {
+  margin-left: 15px;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.Drop-down {
+  padding: 10px;
+  background: #40434a;
+}
+
+.Search-container {
+  padding: 10px;
+  background: #40434a;
+}
+
+.Search-result-container {
+  position: relative;
+  padding: 10px 10px 0px 10px;
+  background: #40434a;
+}
+
+.Search-result-container__content {
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.Search-result-container_border-top::after {
+  position: absolute;
+  content: "";
+  width: 95%;
+  height: 2px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  margin: auto;
+  background-color: #868686;
+}
+
+.Search-container__ext-filter {
+  margin: 5px 0px 20px 20px;
+}
+
+.Ext-filter {
+  background: black;
+  margin: 5px;
+  padding: 5px;
+  border: solid 1px white;
+  border-radius: 5px;
+}
+
+.Ext-filter__serch-value{
+  display: none;
+}
+
+.Ext-filter:hover > .Ext-filter__serch-value{
+  display: block;
+}
+
+.Ext-filter__serch-value{
+  cursor: pointer;
+}
+
+.Ext-filter__serch-value_selected{
+  display: block;
 }
