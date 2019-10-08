@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import DropdownItems from './DropdownItems';
 export default class Dropdown extends React.Component {
+    className = "Drop-down";
     constructor(props) {
         super(props);
         this.state = { items: [], isDisplayItems: false };
@@ -21,9 +22,11 @@ export default class Dropdown extends React.Component {
     }
 
     handleClick = (event) => {
-        this.setState((prev) => {
-            return { ...prev, isDisplayItems: prev.isDisplayItems ? false : true }
-        })
+        if (event.currentTarget.contains(event.target)) {
+            this.setState((prev) => {
+                return { isDisplayItems: prev.isDisplayItems ? false : true }
+            })
+        }
     }
 
     render() {
@@ -32,15 +35,17 @@ export default class Dropdown extends React.Component {
         const items = this.state.items;
         const isDisplayItems = this.state.isDisplayItems;
         return (
-            <div className="Drop-down">
-                <div className="Row-container">
-                    <FontAwesomeIcon icon={faChevronDown} onClick={this.handleClick} size="sm" color="white" />
-                    <div className="ml-10">
-                        <span className="text-bold">{name}</span> {selectedItems}
+            <>
+                <div className={this.className} onClick={this.handleClick}>
+                    <div className="Row-container"  >
+                        <FontAwesomeIcon icon={faChevronDown} size="sm" color="white" />
+                        <div className="ml-10">
+                            <span className="text-bold">{name}</span> {selectedItems}
+                        </div>
                     </div>
                 </div>
-                <DropdownItems Items={items} isDisplayItems={isDisplayItems}/>
-            </div>
+                <DropdownItems Items={items} isDisplayItems={isDisplayItems} />
+            </>
         );
     }
 };

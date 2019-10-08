@@ -4,17 +4,14 @@ import Checkbox from './Checkbox';
 export default class DropdownItems extends React.Component {
 
     handleChenge = (event) => {
-    
+        console.log(event);
     }
 
     renderItems = () => {
         const items = this.props.Items;
-        if (!items) {
-            return '';
-        }
         const renderItems = items.map((element, index) => {
             return <div key={index}>
-                <Checkbox  label={element.name} handleCheckboxChange={this.handleChenge}/>
+                <Checkbox label={element.name} handleCheckboxChange={this.handleChenge}/>
             </div>
 
         });
