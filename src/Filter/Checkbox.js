@@ -1,20 +1,22 @@
 import React from 'react';
 
 class Checkbox extends React.Component {
-    state = {
-        isChecked: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            isChecked: props.checked,
+        }
     }
 
     toggleCheckboxChange = () => {
-        const { handleCheckboxChange, label, id } = this.props;
+        const { handleCheckboxChange, id } = this.props;
 
-        this.setState(({ isChecked }) => (
-            {
-                isChecked: !isChecked,
-            }
-        ));
+        this.setState(({ isChecked }) => {
+            handleCheckboxChange({ id, isChecked: !isChecked });
+            return { isChecked: !isChecked }
+        });
 
-        handleCheckboxChange({ label, id });
+
     }
 
     render() {

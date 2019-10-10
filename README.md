@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## fake json server
+install
+npm install -g json-server
+start
+json-server --watch fakeData/data.json --port 3001 
 
 ## Available Scripts
 

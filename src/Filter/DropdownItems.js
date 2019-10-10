@@ -2,16 +2,21 @@ import React from 'react';
 import Checkbox from './Checkbox';
 
 export default class DropdownItems extends React.Component {
+    componentDidUpdate() {
+       
+    }
+
+  
 
     handleChenge = (event) => {
-        console.log(event);
+        this.props.setContext(event);
     }
 
     renderItems = () => {
         const items = this.props.Items;
         const renderItems = items.map((element, index) => {
             return <div key={index}>
-                <Checkbox label={element.name} handleCheckboxChange={this.handleChenge}/>
+                <Checkbox id={element.id} label={element.name} checked={element.checked} handleCheckboxChange={this.handleChenge} />
             </div>
 
         });
@@ -25,7 +30,7 @@ export default class DropdownItems extends React.Component {
             const renderedItems = this.renderItems();
 
             return (
-                <div className={className}>
+                <div className={className} ref={this.dropdownRef}>
                     <div className="Dropdown-result-container__content">
                         {renderedItems}
                     </div>
@@ -36,8 +41,4 @@ export default class DropdownItems extends React.Component {
         }
 
     }
-
-
-
-
 };

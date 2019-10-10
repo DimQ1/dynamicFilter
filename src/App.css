@@ -164,9 +164,7 @@
 
 .Dropdown-result-container{
   position: absolute;
-  max-height: 200px;
   width: 240px;
-  overflow-y: scroll;
   top: 30px;
   left: 20px;
   right: 0;

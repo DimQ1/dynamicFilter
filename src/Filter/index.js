@@ -1,10 +1,12 @@
-
 import React from 'react';
 import Header from './Header';
 import Dropdown from './Dropdown';
 import Search from './Search';
+import { setCheckedContext } from '../actions/context'
+import { setCheckedDimensions } from '../actions/dimensions'
+import { connect } from 'react-redux';
 
-export default class MainContainer extends React.Component {
+class MainContainer extends React.Component {
     constructor(prpos) {
         super(prpos);
         this.state = { y: 0, x: 0 };
@@ -46,7 +48,7 @@ export default class MainContainer extends React.Component {
     }
     render() {
         const { x, y } = this.state;
-
+        const { context, dimensions, setCheckedContextAction, setCheckedDimensionsAction } = this.props;
         return (
             <div className="Filter-contaner" style={{ left: x, top: y }}>
                 <div className="Header-line_color-blue"></div>
@@ -54,13 +56,13 @@ export default class MainContainer extends React.Component {
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'CONTEXT'} value={["serch1", "search2"]} />
+                        <Dropdown name={'CONTEXT'} items={context} setContext={setCheckedContextAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'DIMENSIONS'} value={["serch1", "search2"]} />
+                        <Dropdown name={'DIMENSIONS'} items={dimensions} setContext={setCheckedDimensionsAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">
@@ -78,7 +80,19 @@ export default class MainContainer extends React.Component {
     }
 }
 
-MainContainer.defaultProps = {
-    x: 0,
-    y: 0
+const mapStateToProps = store => {
+    console.log(store) // посмотрим, что же у нас в store?
+    return {
+        context: store.context,
+        dimensions: store.dimensions
+    }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setCheckedContextAction: checkedItem => dispatch(setCheckedContext(checkedItem)),
+        setCheckedDimensionsAction: checkedItem => dispatch(setCheckedDimensions(checkedItem)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

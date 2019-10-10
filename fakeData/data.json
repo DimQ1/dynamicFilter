@@ -1,0 +1,67 @@
+{
+    "contexts": [
+        {
+            "id": 1,
+            "Dimensions": [
+                {
+                    "id": 1,
+                    "name": "context1Dimensions1"
+                },
+                {
+                    "id": 2,
+                    "name": "context1Dimensions2"
+                },
+                {
+                    "id": 3,
+                    "name": "context1Dimensions3"
+                },
+                {
+                    "id": 4,
+                    "name": "context1Dimensions4"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "Dimensions": [
+                {
+                    "id": 1,
+                    "name": "context2Dimensions1"
+                },
+                {
+                    "id": 2,
+                    "name": "context2Dimensions2"
+                },
+                {
+                    "id": 3,
+                    "name": "context2Dimensions3"
+                },
+                {
+                    "id": 4,
+                    "name": "context2Dimensions4"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "Dimensions": [
+                {
+                    "id": 1,
+                    "name": "context3Dimensions1"
+                },
+                {
+                    "id": 2,
+                    "name": "context3Dimensions2"
+                },
+                {
+                    "id": 3,
+                    "name": "context3Dimensions3"
+                },
+                {
+                    "id": 4,
+                    "name": "context3Dimensions4"
+                }
+            ]
+        }
+    ]
+}
