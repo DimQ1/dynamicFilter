@@ -136,14 +136,17 @@
 
 .Search-container__ext-filter {
   margin: 5px 0px 20px 20px;
+  height: 40px;
 }
 
 .Ext-filter {
+  position: absolute;
   background: black;
   margin: 5px;
   padding: 5px;
   border: solid 1px white;
   border-radius: 5px;
+  z-index: 100;
 }
 
 .Ext-filter__serch-value{

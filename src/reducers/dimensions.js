@@ -1,39 +1,55 @@
-import { SET_CHEACKED, SET_ITEMS } from '../actions/dimensions'
+import {
+    SET_CHEACKED, SET_ITEMS,
+    FETCH_DIMENSIONS_PENDING,
+    FETCH_DIMENSIONS_SUCCESS,
+    FETCH_DIMENSIONS_ERROR
+} from '../actions/dimensions'
 
-const initialState = [
-    { id: 1, name: "item1", checked: false, contextId: 1 },
-    { id: 2, name: "item2", checked: false, contextId: 1 },
-    { id: 3, name: "item3", checked: false, contextId: 1 },
-    { id: 4, name: "item4", checked: false, contextId: 1 },
-    { id: 5, name: "item5", checked: false, contextId: 2 },
-    { id: 6, name: "item6", checked: false, contextId: 2 },
-    { id: 7, name: "item7", checked: false, contextId: 3 },
-    { id: 8, name: "item8", checked: false, contextId: 4 },
-    { id: 9, name: "item9", checked: false, contextId: 5 }
-]
+const cachedState = []
+const initState = { items: [], pending: false };
 
-export function dimensionsReducer(state = [], action) {
+export function dimensionsReducer(state = initState, action) {
     switch (action.type) {
         case SET_CHEACKED:
-            const { id, isChecked } = action.payload;
-            const updatedState = state.map(item => {
-                if (item.id === id) {
-                    item.checked = isChecked;
-                }
-                return item;
-            })
-            return updatedState
+            {
+                const { id, isChecked } = action.payload;
+                const updatedState = state.items.map(item => {
+                    if (item.id === id) {
+                        item.checked = isChecked;
+                    }
+                    return item;
+                })
+
+                return { ...state, items: updatedState }
+            }
         case SET_ITEMS:
             {
                 const { id, isChecked } = action.payload;
                 if (isChecked) {
-                    const newState = state.concat(
-                        initialState.filter(item => item.contextId === id)
-                    )
-                    return newState
+                    const filteredItems = cachedState.filter(item => item.contextId === id);
+                    const newState = state.items.concat(filteredItems);
+                    return { ...state, items: newState }
                 } else {
-                    return state.filter(item => item.contextId !== id);
+                    const filteredItems = state.items.filter(item => item.contextId !== id);
+                    return { ...state, items: filteredItems }
                 }
+            }
+        case FETCH_DIMENSIONS_PENDING:
+            return {
+                ...state,
+                pending: true
+            }
+        case FETCH_DIMENSIONS_SUCCESS:
+            cachedState.push(...action.payload);
+            return {
+                ...state,
+                pending: false,
+            }
+        case FETCH_DIMENSIONS_ERROR:
+            return {
+                ...state,
+                pending: false,
+                items: action.error
             }
         default:
             return state;

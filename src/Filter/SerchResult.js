@@ -7,8 +7,7 @@ export default function SerchResult(props) {
         if (!value) {
             return '';
         }
-        const items = [];
-        value.map((element, index) => {
+        const items = value.map((element, index) => {
             return <div key={index}>
                 <label>
                     <input name="isGoing" type="checkbox" />

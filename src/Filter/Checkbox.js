@@ -15,8 +15,6 @@ class Checkbox extends React.Component {
             handleCheckboxChange({ id, isChecked: !isChecked });
             return { isChecked: !isChecked }
         });
-
-
     }
 
     render() {

@@ -4,12 +4,19 @@ import Dropdown from './Dropdown';
 import Search from './Search';
 import { setCheckedContext } from '../actions/context'
 import { setCheckedDimensions } from '../actions/dimensions'
+import fetchContextAction from '../actions/fetchContext';
+import fetchDimensionsAction from '../actions/fetchDimensions';
 import { connect } from 'react-redux';
 
 class MainContainer extends React.Component {
     constructor(prpos) {
         super(prpos);
         this.state = { y: 0, x: 0 };
+    }
+
+    componentDidMount(){
+        this.props.fetchContexts();
+        this.props.fetchDimensions();
     }
 
     mouseDown = (e) => {
@@ -56,13 +63,13 @@ class MainContainer extends React.Component {
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'CONTEXT'} items={context} setContext={setCheckedContextAction} />
+                        <Dropdown name={'CONTEXT'} items={context.items} setContext={setCheckedContextAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'DIMENSIONS'} items={dimensions} setContext={setCheckedDimensionsAction} />
+                        <Dropdown name={'DIMENSIONS'} items={dimensions.items} setContext={setCheckedDimensionsAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">
@@ -92,6 +99,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setCheckedContextAction: checkedItem => dispatch(setCheckedContext(checkedItem)),
         setCheckedDimensionsAction: checkedItem => dispatch(setCheckedDimensions(checkedItem)),
+        fetchContexts: () => dispatch(fetchContextAction()),
+        fetchDimensions: () => dispatch(fetchDimensionsAction())
     }
 }
 

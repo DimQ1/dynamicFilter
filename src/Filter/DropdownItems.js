@@ -2,12 +2,6 @@ import React from 'react';
 import Checkbox from './Checkbox';
 
 export default class DropdownItems extends React.Component {
-    componentDidUpdate() {
-       
-    }
-
-  
-
     handleChenge = (event) => {
         this.props.setContext(event);
     }

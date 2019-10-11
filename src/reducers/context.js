@@ -1,26 +1,42 @@
-import { SET_CHEACKED } from '../actions/context'
+import { SET_CHEACKED, FETCH_CONTEXT_PENDING, FETCH_CONTEXT_SUCCESS, FETCH_CONTEXT_ERROR } from '../actions/context'
 
-const initialState =
-    [
-        { id: 1, name: "item1", checked: false },
-        { id: 2, name: "item2", checked: false },
-        { id: 3, name: "item3", checked: false },
-        { id: 4, name: "item4", checked: false },
-        { id: 5, name: "item5", checked: false },
-    ]
-
+const initialState = {
+    pending: false,
+    error: null,
+    items: []
+}
 
 export function contextReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CHEACKED:
             const { id, isChecked } = action.payload;
-            const updatedState = state.map(item => {
+            const updatedState = state.items.map(item => {
                 if (item.id === id) {
                     item.checked = isChecked;
                 }
                 return item;
             })
-            return updatedState
+            return {
+                ...state,
+                items: updatedState
+            }
+        case FETCH_CONTEXT_PENDING:
+            return {
+                ...state,
+                pending: true
+            }
+        case FETCH_CONTEXT_SUCCESS:
+            return {
+                ...state,
+                pending: false,
+                items: action.payload
+            }
+            case FETCH_CONTEXT_ERROR:
+            return {
+                ...state,
+                pending: false,
+                items: action.error
+            }
         default:
             return state
     }

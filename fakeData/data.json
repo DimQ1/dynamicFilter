@@ -1,67 +1,20 @@
 {
     "contexts": [
-        {
-            "id": 1,
-            "Dimensions": [
-                {
-                    "id": 1,
-                    "name": "context1Dimensions1"
-                },
-                {
-                    "id": 2,
-                    "name": "context1Dimensions2"
-                },
-                {
-                    "id": 3,
-                    "name": "context1Dimensions3"
-                },
-                {
-                    "id": 4,
-                    "name": "context1Dimensions4"
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "Dimensions": [
-                {
-                    "id": 1,
-                    "name": "context2Dimensions1"
-                },
-                {
-                    "id": 2,
-                    "name": "context2Dimensions2"
-                },
-                {
-                    "id": 3,
-                    "name": "context2Dimensions3"
-                },
-                {
-                    "id": 4,
-                    "name": "context2Dimensions4"
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "Dimensions": [
-                {
-                    "id": 1,
-                    "name": "context3Dimensions1"
-                },
-                {
-                    "id": 2,
-                    "name": "context3Dimensions2"
-                },
-                {
-                    "id": 3,
-                    "name": "context3Dimensions3"
-                },
-                {
-                    "id": 4,
-                    "name": "context3Dimensions4"
-                }
-            ]
-        }
+        { "id": 1, "name": "item1", "checked": false },
+        { "id": 2, "name": "item2", "checked": false },
+        { "id": 3, "name": "item3", "checked": false },
+        { "id": 4, "name": "item4", "checked": false },
+        { "id": 5, "name": "item5", "checked": false }
+    ],
+    "dimensions": [
+    { "id": 1, "name": "item1", "checked": false, "contextId": 1 },
+    { "id": 2, "name": "item2", "checked": false, "contextId": 1 },
+    { "id": 3, "name": "item3", "checked": false, "contextId": 1 },
+    { "id": 4, "name": "item4", "checked": false, "contextId": 1 },
+    { "id": 5, "name": "item5", "checked": false, "contextId": 2 },
+    { "id": 6, "name": "item6", "checked": false, "contextId": 2 },
+    { "id": 7, "name": "item7", "checked": false, "contextId": 3 },
+    { "id": 8, "name": "item8", "checked": false, "contextId": 4 },
+    { "id": 9, "name": "item9", "checked": false, "contextId": 5 }
     ]
 }
