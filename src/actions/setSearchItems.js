@@ -10,8 +10,7 @@ export function removeSearchItems(dimensionId) {
 }
 
 export function removeSearchItemsByIds(dimensionIds) {
-    return dispatch => 
-    {
+    return dispatch => {
         dimensionIds.forEach(id => {
             dispatch(removeItems(id));
         });
