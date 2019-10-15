@@ -10,7 +10,6 @@ export default function fetchContext() {
                 throw(res.error);
             }
             dispatch(fetchContextSuccess(res));
-            return res;
         })
         .catch(error => {
             dispatch(fetchContextError(error));

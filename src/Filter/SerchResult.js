@@ -4,14 +4,14 @@ export default function SerchResult(props) {
     const value = props.value;
 
     function renderItems() {
-        if (!value) {
+        if (!value || value.length === 0) {
             return '';
         }
         const items = value.map((element, index) => {
-            return <div key={index}>
+            return <div key={element.id}>
                 <label>
                     <input name="isGoing" type="checkbox" />
-                    {element}
+                    {element.name}
                 </label>
             </div>
 

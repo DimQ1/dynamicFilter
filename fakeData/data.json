@@ -16,5 +16,19 @@
     { "id": 7, "name": "item7", "checked": false, "contextId": 3 },
     { "id": 8, "name": "item8", "checked": false, "contextId": 4 },
     { "id": 9, "name": "item9", "checked": false, "contextId": 5 }
+    ],
+    "dimensionsItems":[
+        { "id": 1, "name": "d1_1", "dimensionId": 1 },
+        { "id": 2, "name": "d1_2", "dimensionId": 1 },
+        { "id": 3, "name": "d2_1", "dimensionId": 2 },
+        { "id": 4, "name": "d3_1", "dimensionId": 3 },
+        { "id": 5, "name": "d3_2", "dimensionId": 3 },
+        { "id": 6, "name": "d3_3", "dimensionId": 3 },
+        { "id": 7, "name": "d3_4", "dimensionId": 3 },
+        { "id": 8, "name": "d3_5", "dimensionId": 3 },
+        { "id": 9, "name": "d3_6", "dimensionId": 3 },
+        { "id": 10, "name": "d5_7", "dimensionId": 5 },
+        { "id": 11, "name": "d5_8", "dimensionId": 5 },
+        { "id": 12, "name": "d7_9", "dimensionId": 7 }
     ]
 }

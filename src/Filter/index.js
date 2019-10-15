@@ -2,8 +2,9 @@ import React from 'react';
 import Header from './Header';
 import Dropdown from './Dropdown';
 import Search from './Search';
-import { setCheckedContext } from '../actions/context'
-import { setCheckedDimensions } from '../actions/dimensions'
+import { setCheckedContext } from '../actions/setCheckedContext'
+import { setCheckedDimensions } from "../actions/setDimensions";
+import { removeSearchItemsByIds } from "../actions/setSearchItems";
 import fetchContextAction from '../actions/fetchContext';
 import fetchDimensionsAction from '../actions/fetchDimensions';
 import { connect } from 'react-redux';
@@ -14,7 +15,7 @@ class MainContainer extends React.Component {
         this.state = { y: 0, x: 0 };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchContexts();
         this.props.fetchDimensions();
     }
@@ -53,9 +54,13 @@ class MainContainer extends React.Component {
         window.removeEventListener('mousemove', this.mouseMove);
         window.removeEventListener('mouseup', this.mouseUp);
     }
+
     render() {
         const { x, y } = this.state;
-        const { context, dimensions, setCheckedContextAction, setCheckedDimensionsAction } = this.props;
+        const { context, dimensions, setCheckedContextAction, setCheckedDimensionsAction, removeSearchItemsByIdsAction } = this.props;
+        if (dimensions.removeIds.length > 0) {
+            removeSearchItemsByIdsAction(dimensions.removeIds)
+        }
         return (
             <div className="Filter-contaner" style={{ left: x, top: y }}>
                 <div className="Header-line_color-blue"></div>
@@ -88,7 +93,6 @@ class MainContainer extends React.Component {
 }
 
 const mapStateToProps = store => {
-    console.log(store) // посмотрим, что же у нас в store?
     return {
         context: store.context,
         dimensions: store.dimensions
@@ -97,8 +101,9 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setCheckedContextAction: checkedItem => dispatch(setCheckedContext(checkedItem)),
-        setCheckedDimensionsAction: checkedItem => dispatch(setCheckedDimensions(checkedItem)),
+        setCheckedContextAction: (items, checkedItem) => dispatch(setCheckedContext(items, checkedItem)),
+        setCheckedDimensionsAction: (items, checkedItem) => dispatch(setCheckedDimensions(items, checkedItem)),
+        removeSearchItemsByIdsAction: (ids) => dispatch(removeSearchItemsByIds(ids)),
         fetchContexts: () => dispatch(fetchContextAction()),
         fetchDimensions: () => dispatch(fetchDimensionsAction())
     }

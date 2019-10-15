@@ -1,54 +1,50 @@
 import {
-    SET_CHEACKED, SET_ITEMS,
+    SET_DIMENSION_CHECKED,
+    ADD_DIMENSIONS_ITEMS,
+    REMOVE_DIMENSIONS_ITEMS,
     FETCH_DIMENSIONS_PENDING,
     FETCH_DIMENSIONS_SUCCESS,
     FETCH_DIMENSIONS_ERROR
 } from '../actions/dimensions'
 
-const cachedState = []
-const initState = { items: [], pending: false };
+const initState = { items: [], removeIds:[], pending: false };
 
 export function dimensionsReducer(state = initState, action) {
     switch (action.type) {
-        case SET_CHEACKED:
+        case SET_DIMENSION_CHECKED:
             {
-                const { id, isChecked } = action.payload;
-                const updatedState = state.items.map(item => {
-                    if (item.id === id) {
-                        item.checked = isChecked;
-                    }
-                    return item;
-                })
-
-                return { ...state, items: updatedState }
+                return { ...state, items: action.payload, removeIds:[] }
             }
-        case SET_ITEMS:
+        case ADD_DIMENSIONS_ITEMS:
             {
-                const { id, isChecked } = action.payload;
-                if (isChecked) {
-                    const filteredItems = cachedState.filter(item => item.contextId === id);
-                    const newState = state.items.concat(filteredItems);
-                    return { ...state, items: newState }
-                } else {
-                    const filteredItems = state.items.filter(item => item.contextId !== id);
-                    return { ...state, items: filteredItems }
-                }
+                const newState = state.items.concat(action.payload);
+                return { ...state, items: newState, removeIds:[] }
+
+            }
+        case REMOVE_DIMENSIONS_ITEMS:
+            {
+                const removedIds = state.items.filter(item => item.contextId === action.payload).map(item => item.id);
+                const newState = state.items.filter(item => item.contextId !== action.payload);
+                return { ...state, items: newState, removeIds: removedIds }
+
             }
         case FETCH_DIMENSIONS_PENDING:
             return {
                 ...state,
+                removeIds:[],
                 pending: true
             }
         case FETCH_DIMENSIONS_SUCCESS:
-            cachedState.push(...action.payload);
             return {
                 ...state,
+                removeIds:[],
                 pending: false,
             }
         case FETCH_DIMENSIONS_ERROR:
             return {
                 ...state,
                 pending: false,
+                removeIds:[],
                 items: action.error
             }
         default:

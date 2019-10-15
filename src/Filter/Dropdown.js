@@ -18,7 +18,6 @@ export default class Dropdown extends React.Component {
     }
 
     handleWindowClick = (event) => {
-
         if (!this.dropdownRef.current.contains(event.target)) {
             this.setState({ isDisplayItems: false });
             document.removeEventListener("click", this.handleWindowClick);

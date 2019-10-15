@@ -9,16 +9,9 @@ const initialState = {
 export function contextReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CHEACKED:
-            const { id, isChecked } = action.payload;
-            const updatedState = state.items.map(item => {
-                if (item.id === id) {
-                    item.checked = isChecked;
-                }
-                return item;
-            })
             return {
                 ...state,
-                items: updatedState
+                items: action.payload
             }
         case FETCH_CONTEXT_PENDING:
             return {
