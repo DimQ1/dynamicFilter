@@ -3,9 +3,11 @@ import React from 'react';
 class Checkbox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isChecked: props.checked,
-        }
+        this.state = { isChecked: false }
+    }
+
+    componentDidMount() {
+        this.setState({ isChecked: this.props.checked });
     }
 
     toggleCheckboxChange = () => {
