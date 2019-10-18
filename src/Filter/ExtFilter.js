@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function RenderItems({ filterValues, selectItemAction }) {
+
+    const [isShowAllItems, setIsShowAllItems] = useState(false);
+
     const handleClick = (event) => {
-        selectItemAction(event.target.value);
+        if (isShowAllItems) {
+            selectItemAction(event.target.value);
+        }
+        setIsShowAllItems(!isShowAllItems);
     }
     const selectedId = filterValues.selectedId;
+    if (isShowAllItems) {
+        return filterValues.items.sort((a, b) => {
+            return a.id === selectedId ? -1 : 1;
+        }).map(item => {
+            const selected = " Ext-filter__serch-value";
+            return <li key={item.id} className={selected} value={item.id} onClick={handleClick}>{item.value}</li>;
+        })
+    }
 
-    return filterValues.items.map(item => {
-        const selected = item.id === selectedId ? " Ext-filter__serch-value Ext-filter__serch-value_selected" : "Ext-filter__serch-value";
-        return <li key={item.id} className={selected} value={item.id} onClick={handleClick}>{item.value}</li>;
-    })
+    const selectedItem = filterValues.items.filter(item => item.id === selectedId)[0];
+    const selected = " Ext-filter__serch-value";
+    return <li key={selectedItem.id} className={selected} value={selectedItem.id} onClick={handleClick}>{selectedItem.value}</li>;
 }
 
 export default function ExtFilter(props) {

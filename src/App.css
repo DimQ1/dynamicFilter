@@ -150,7 +150,7 @@
 }
 
 .Ext-filter__serch-value{
-  display: none;
+  display: block;
 }
 
 .Ext-filter:hover > .Ext-filter__serch-value{
@@ -159,10 +159,6 @@
 
 .Ext-filter__serch-value{
   cursor: pointer;
-}
-
-.Ext-filter__serch-value_selected{
-  display: block;
 }
 
 .Dropdown-result-container{
