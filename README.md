@@ -1,8 +1,5 @@
-## fake json server
-install
-npm install -g json-server
-start
-json-server --watch fakeData/data.json --port 3001 
+## Start project
+npm run dev
 
 ## Available Scripts
 
