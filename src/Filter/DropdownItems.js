@@ -2,7 +2,12 @@ import React from 'react';
 import Checkbox from './Checkbox';
 
 function RenderItems(props) {
-    const { Items } = props;
+    const { Items, error } = props;
+
+    if (error) {
+        return (<div> {error.message}</div>);
+    }
+
     if (!Items || Items.length === 0) {
         return <div>no items</div>
     }
@@ -17,10 +22,6 @@ function RenderItems(props) {
     return renderItems;
 }
 
-function RenderErros({ error }) {
-    return (<div> {error.message}</div>);
-}
-
 export default class DropdownItems extends React.Component {
     handleChenge = (event) => {
         const { Items } = this.props;
@@ -31,17 +32,10 @@ export default class DropdownItems extends React.Component {
         const className = this.props.isDisplayItems ? "Dropdown-result-container Dropdown-result-container_border-top" :
             "Dropdown-result-container Dropdown-result-container_border-top Dropdown-result-container_hide";
         const { items, error } = this.props.value;
-        let renderItems;
-        if (error) {
-            renderItems = <RenderErros error={error} />;
-        } else {
-            renderItems = <RenderItems Items={items} handleChenge={this.handleChenge} />;
-        }
-
         return (
             <div className={className} ref={this.dropdownRef}>
                 <div className="Dropdown-result-container__content">
-                    {renderItems}
+                    <RenderItems Items={items} error={error} handleChenge={this.handleChenge} />;
                 </div>
             </div>
         );
