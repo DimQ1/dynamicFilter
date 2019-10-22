@@ -35,7 +35,7 @@ export default class DropdownItems extends React.Component {
         return (
             <div className={className} ref={this.dropdownRef}>
                 <div className="Dropdown-result-container__content">
-                    <RenderItems Items={items} error={error} handleChenge={this.handleChenge} />;
+                    <RenderItems Items={items} error={error} handleChenge={this.handleChenge} />
                 </div>
             </div>
         );
