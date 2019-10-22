@@ -45,7 +45,7 @@ export function dimensionsReducer(state = initState, action) {
                 ...state,
                 pending: false,
                 removeIds:[],
-                items: action.error
+                error: action.error
             }
         default:
             return state;

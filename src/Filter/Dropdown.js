@@ -12,8 +12,8 @@ export default class Dropdown extends React.Component {
     }
 
     getSelectedItems() {
-        const { items } = this.props;
-        return items ? items.filter(item => item.checked === true).map(item => item.name).join(", ") : '';
+        const { value } = this.props;
+        return value && !value.error ? value.items.filter(item => item.checked === true).map(item => item.name).join(", ") : '';
     }
 
     handleWindowClick = (event) => {
@@ -41,7 +41,7 @@ export default class Dropdown extends React.Component {
     }
 
     render() {
-        const { name, items, setContext } = this.props;
+        const { name, value, setContext } = this.props;
         const { isDisplayItems } = this.state;
         const selectedItems = this.getSelectedItems();
 
@@ -55,7 +55,7 @@ export default class Dropdown extends React.Component {
                         </div>
                     </div>
                 </div>
-                <DropdownItems Items={items} isDisplayItems={isDisplayItems} setContext={setContext} />
+                <DropdownItems value={value} isDisplayItems={isDisplayItems} setContext={setContext} />
             </div>
         );
     }

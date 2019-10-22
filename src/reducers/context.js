@@ -28,7 +28,7 @@ export function contextReducer(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                items: action.error
+                error: action.error
             }
         default:
             return state

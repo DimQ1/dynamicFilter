@@ -61,6 +61,7 @@ class MainContainer extends React.Component {
         if (dimensions.removeIds.length > 0) {
             removeSearchItemsByIdsAction(dimensions.removeIds)
         }
+
         return (
             <div className="Filter-contaner" style={{ left: x, top: y }}>
                 <div className="Header-line_color-blue"></div>
@@ -68,13 +69,13 @@ class MainContainer extends React.Component {
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'CONTEXT'} items={context.items} setContext={setCheckedContextAction} />
+                        <Dropdown name={'CONTEXT'} value={context} setContext={setCheckedContextAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">
                     <div className="Row-container__Col-1 Row-container__Col-1_border-r"></div>
                     <div className="Row-container__Col-2">
-                        <Dropdown name={'DIMENSIONS'} items={dimensions.items} setContext={setCheckedDimensionsAction} />
+                        <Dropdown name={'DIMENSIONS'} value={dimensions} setContext={setCheckedDimensionsAction} />
                     </div>
                 </div>
                 <div className="Row-container Row-container_background-b">

@@ -17,6 +17,10 @@ function RenderItems(props) {
     return renderItems;
 }
 
+function RenderErros({ error }) {
+    return (<div> {error.message}</div>);
+}
+
 export default class DropdownItems extends React.Component {
     handleChenge = (event) => {
         const { Items } = this.props;
@@ -25,11 +29,19 @@ export default class DropdownItems extends React.Component {
 
     render() {
         const className = this.props.isDisplayItems ? "Dropdown-result-container Dropdown-result-container_border-top" :
-            "Dropdown-result-container Dropdown-result-container_border-top Dropdown-result-container_hide"
+            "Dropdown-result-container Dropdown-result-container_border-top Dropdown-result-container_hide";
+        const { items, error } = this.props.value;
+        let renderItems;
+        if (error) {
+            renderItems = <RenderErros error={error} />;
+        } else {
+            renderItems = <RenderItems Items={items} handleChenge={this.handleChenge} />;
+        }
+
         return (
             <div className={className} ref={this.dropdownRef}>
                 <div className="Dropdown-result-container__content">
-                    <RenderItems Items={this.props.Items} handleChenge={this.handleChenge} />
+                    {renderItems}
                 </div>
             </div>
         );
