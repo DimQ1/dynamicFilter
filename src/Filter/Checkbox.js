@@ -11,10 +11,10 @@ class Checkbox extends React.Component {
     }
 
     toggleCheckboxChange = () => {
-        const { handleCheckboxChange, id } = this.props;
+        const { onChange, id } = this.props;
 
         this.setState(({ isChecked }) => {
-            handleCheckboxChange({ id, isChecked: !isChecked });
+            onChange({ id, isChecked: !isChecked });
             return { isChecked: !isChecked }
         });
     }

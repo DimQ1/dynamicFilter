@@ -14,7 +14,7 @@ function RenderItems(props) {
 
     const renderItems = Items.map((element, index) => {
         return <div key={index}>
-            <Checkbox id={element.id} label={element.name} checked={element.checked} handleCheckboxChange={props.handleChenge} />
+            <Checkbox id={element.id} label={element.name} checked={element.checked} onChange={props.onChenge} />
         </div>
 
     });
@@ -24,8 +24,8 @@ function RenderItems(props) {
 
 export default class DropdownItems extends React.Component {
     handleChenge = (event) => {
-        const { Items } = this.props;
-        this.props.setContext(Items, event);
+        const { items } = this.props.value;
+        this.props.onContextClick(items, event);
     }
 
     render() {
@@ -35,7 +35,7 @@ export default class DropdownItems extends React.Component {
         return (
             <div className={className} ref={this.dropdownRef}>
                 <div className="Dropdown-result-container__content">
-                    <RenderItems Items={items} error={error} handleChenge={this.handleChenge} />
+                    <RenderItems Items={items} error={error} onChenge={this.handleChenge} />
                 </div>
             </div>
         );

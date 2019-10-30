@@ -31,8 +31,8 @@ function Search(props) {
             </div>
             <div className="Search-container__ext-filter">
                 <div className="Row-container Row-container_aling-top">
-                    <ExtFilter values={extFilter} x={0} y={0} selectItemAction={filterSelectItemAction} />
-                    <ExtFilter values={extOrder} x={"40px"} y={0} selectItemAction={orderSelectItemAction} />
+                    <ExtFilter values={extFilter} x={0} y={0} onClick={filterSelectItemAction} />
+                    <ExtFilter values={extOrder} x={"40px"} y={0} onClick={orderSelectItemAction} />
                 </div>
             </div>
             <SearchResult value={getFilteredItems(resultValue.items, { ...extFilter, expr: inputValue })} order={extOrder.selectedId} />

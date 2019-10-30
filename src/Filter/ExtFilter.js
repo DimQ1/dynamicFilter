@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-function RenderItems({ filterValues, selectItemAction }) {
+function RenderItems({ filterValues, onClick }) {
 
     const [isShowAllItems, setIsShowAllItems] = useState(false);
 
     const handleClick = (event) => {
         if (isShowAllItems) {
-            selectItemAction(event.target.value);
+            onClick(event.target.value);
         }
         setIsShowAllItems(!isShowAllItems);
     }
@@ -26,12 +26,11 @@ function RenderItems({ filterValues, selectItemAction }) {
 }
 
 export default function ExtFilter(props) {
-    const { x, y, values, selectItemAction } = props;
+    const { x, y, values, onClick } = props;
     return (
         <div className="Ext-filter" style={{ left: x, top: y }}>
-            <RenderItems filterValues={values} selectItemAction={selectItemAction} />
+            <RenderItems filterValues={values} onClick={onClick} />
         </div>
-
     );
 };
 

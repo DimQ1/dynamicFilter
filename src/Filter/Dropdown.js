@@ -41,7 +41,7 @@ export default class Dropdown extends React.Component {
     }
 
     render() {
-        const { name, value, setContext } = this.props;
+        const { name, value, onContextClick } = this.props;
         const { isDisplayItems } = this.state;
         const selectedItems = this.getSelectedItems();
 
@@ -55,7 +55,7 @@ export default class Dropdown extends React.Component {
                         </div>
                     </div>
                 </div>
-                <DropdownItems value={value} isDisplayItems={isDisplayItems} setContext={setContext} />
+                <DropdownItems value={value} isDisplayItems={isDisplayItems} onContextClick={onContextClick} />
             </div>
         );
     }
